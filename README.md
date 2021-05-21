@@ -3,8 +3,10 @@ A sandbox of scripts and data to explore the use of cloud-optimized geotiff data
 
 <br>
 
-# To run, simple type:
+### To run, simple type the below command into your terminal:
 
 ``` r
 Rscript Rscripts/COGs_osf_example.R
 ```
+
+or open the script into Rstudio
