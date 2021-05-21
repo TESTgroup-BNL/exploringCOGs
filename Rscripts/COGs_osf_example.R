@@ -79,8 +79,9 @@ rgb_ras <- rast(rgb_cog.url)
 RGB(rgb_ras) <- c(1,2,3)
 rgb_ras
 
-png(file.path(outdir,gsub(".tif",".png",rgb_raster_name)), height=2500, 
-    width=3500, res=340)
+#png(file.path(outdir,gsub(".tif",".png",rgb_raster_name)), height=2500, 
+#    width=3500, res=340)
+pdf(file.path(outdir,gsub(".tif",".pdf",rgb_raster_name)), height=9, width=11)
 #terra::plot(rgb_ras)
 raster::plotRGB(rgb_ras, r=1, g=2, b=3, stretch="lin")
 box(lwd=2.2)
@@ -91,7 +92,8 @@ dem_ras <- rast(dem_cog.url)
 names(dem_ras) <- "DEM_meters"
 dem_ras
 
-png(file.path(outdir,gsub(".tif",".png",dem_raster_name)), height=2500,width=3300, res=340)
+#png(file.path(outdir,gsub(".tif",".png",dem_raster_name)), height=2500,width=3300, res=340)
+pdf(file.path(outdir,gsub(".tif",".pdf",dem_raster_name)), height=9, width=11)
 terra::plot(dem_ras, legend=TRUE, axes=TRUE, smooth=FALSE,range=c(70,101),
             col=topo.colors(35), plg=list(x="topright",cex=1,title="DEM (m)"),
             pax=list(sides=c(1,2), cex.axis=1.2),
@@ -104,11 +106,12 @@ chm_ras <- rast(chm_cog.url)
 names(chm_ras) <- "CHM_meters"
 chm_ras
 
-png(file.path(outdir,gsub(".tif",".png",chm_raster_name)), height=2500,width=3500, res=340)
+#png(file.path(outdir,gsub(".tif",".png",chm_raster_name)), height=2500,width=3500, res=340)
+pdf(file.path(outdir,gsub(".tif",".pdf",chm_raster_name)), height=9, width=11)
 terra::plot(chm_ras, legend=TRUE, axes=TRUE, smooth=FALSE,range=c(0,315),
             col=topo.colors(35), plg=list(x="topright",cex=1,title="CHM (m) x 100"),
             pax=list(sides=c(1,2), cex.axis=1.2),
-            mar=c(2,2,3,5)) # b, l, t, r
+            mar=c(2,2,3,5.5)) # b, l, t, r
 box(lwd=2.2)
 dev.off()
 
@@ -117,12 +120,13 @@ tir_ras <- rast(tir_cog.url)
 names(tir_ras) <- "Tsurf_degCx10"
 tir_ras
 
-png(file.path(outdir,gsub(".tif",".png",tir_raster_name)), height=2500,width=3500, res=340)
+#png(file.path(outdir,gsub(".tif",".png",tir_raster_name)), height=2500,width=3500, res=340)
+pdf(file.path(outdir,gsub(".tif",".pdf",tir_raster_name)), height=9, width=11)
 terra::plot(tir_ras, legend=TRUE, axes=TRUE, smooth=TRUE,range=c(170,300),
             col=rev(brewer.pal(11,"RdYlBu")), 
             plg=list(x="topright",cex=1,title="Tsurf (deg C) x 10"),
             pax=list(sides=c(1,2), cex.axis=1.2),
-            mar=c(2,2,3,5)) # b, l, t, r
+            mar=c(2,2,3,5.5)) # b, l, t, r
 box(lwd=2.2)
 dev.off()
 #--------------------------------------------------------------------------------------------------#
@@ -130,8 +134,9 @@ dev.off()
 
 #--------------------------------------------------------------------------------------------------#
 # extract data
-png(file.path(outdir,paste0(gsub(".tif","",rgb_raster_name),"_points.png")),
-    height=2500, width=3500, res=340)
+#png(file.path(outdir,paste0(gsub(".tif","",rgb_raster_name),"_points.png")),
+#    height=2500, width=3500, res=340)
+pdf(file.path(outdir,paste0(gsub(".tif","",rgb_raster_name),"_points.pdf")), height=9, width=11)
 raster::plotRGB(rgb_ras, r=1, g=2, b=3, stretch="lin")
 box(lwd=2.2)
 points(example_kg_points, pch=20, col="blue", cex=2)
@@ -157,8 +162,8 @@ hist(chm.data[,2],freq=T, xlab="CHM (meters)",main="")
 
 hist(tir.data[,2],freq=T, xlab="Tsurf (degC)",main="")
 
-png(file.path(outdir,"CHM_vs_TIR.png"),
-    height=2500, width=3000, res=340)
+#png(file.path(outdir,"CHM_vs_TIR.png"), height=2500, width=3000, res=340)
+pdf(file.path(outdir,"CHM_vs_TIR.pdf"), height=9, width=11)
 par(mar=c(5,5,1,1)) #b, l, t, r
 plot(chm.data[,2],tir.data[,2], ylab="Tsurf (deg C)", xlab="CHM (meters)",
      cex.axis=1.4,cex.lab=1.8, pch=21, bg="grey50", cex=2)
