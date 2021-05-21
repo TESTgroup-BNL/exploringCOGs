@@ -140,15 +140,12 @@ dev.off()
 
 # extract data
 dem.data <- terra::extract(dem_ras, terra::vect(example_kg_points))
-dem.data
 
 chm.data <- terra::extract(chm_ras, terra::vect(example_kg_points))
 chm.data[,2] <- chm.data[,2]*0.01
-chm.data
 
 tir.data <- terra::extract(tir_ras, terra::vect(example_kg_points))
 tir.data[,2] <- tir.data[,2]*0.1
-tir.data
 #--------------------------------------------------------------------------------------------------#
 
 
