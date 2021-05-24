@@ -2,6 +2,7 @@
 
 # create overviews
 gdaladdo -r average [input.tif] 2 4 8 16
+# https://gdal.org/programs/gdaladdo.html
 
 gdal_translate [input.tif] [output.tif] -of COG
 

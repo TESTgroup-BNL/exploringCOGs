@@ -173,4 +173,21 @@ dev.off()
 
 
 #--------------------------------------------------------------------------------------------------#
+# example subset
+site.area <- cbind(lon = c(508210, 508260), 
+                   lat = c(7226820.0,7226750.0))
+site.area <- terra::vect(site.area, type="polygon", crs="+init=epsg:32603") 
+site.area
+
+# this may take awhile
+sub.ras <- terra::crop(rgb_ras, site.area)
+
+pdf(file.path(outdir,paste0(gsub(".tif","",rgb_raster_name),"_subset.pdf")), height=9, width=11)
+raster::plotRGB(sub.ras, r=1, g=2, b=3, stretch="lin")
+box(lwd=2.2)
+dev.off()
+#--------------------------------------------------------------------------------------------------#
+
+
+#--------------------------------------------------------------------------------------------------#
 # EOF
