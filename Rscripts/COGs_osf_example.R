@@ -142,6 +142,15 @@ box(lwd=2.2)
 points(example_kg_points, pch=20, col="blue", cex=2)
 dev.off()
 
+pdf(file.path(outdir,paste0(gsub(".tif","",chm_raster_name),"_points.pdf")), height=9, width=11)
+terra::plot(chm_ras, legend=TRUE, axes=TRUE, smooth=FALSE,range=c(0,315),
+            col=topo.colors(35), plg=list(x="topright",cex=1,title="CHM (m) x 100"),
+            pax=list(sides=c(1,2), cex.axis=1.2),
+            mar=c(2,2,3,5.5)) # b, l, t, r
+box(lwd=2.2)
+points(example_kg_points, pch=20, col="black", cex=2)
+dev.off()
+
 
 # extract data
 dem.data <- terra::extract(dem_ras, terra::vect(example_kg_points))
@@ -158,7 +167,12 @@ tir.data[,2] <- tir.data[,2]*0.1
 # plot point data
 hist(dem.data[,2],freq=T, xlab="DEM (meters)",main="")
 
-hist(chm.data[,2],freq=T, xlab="CHM (meters)",main="")
+pdf(file.path(outdir,"CHM_hist.pdf"), height=3, width=12)
+par(mar=c(5,5,1,1)) #b, l, t, r
+hist(chm.data[,2],freq=T, xlab="CHM (meters)",main="", cex.axis=2,
+     cex.lab=1.5)
+box(lwd=2.2)
+dev.off()
 
 hist(tir.data[,2],freq=T, xlab="Tsurf (degC)",main="")
 
