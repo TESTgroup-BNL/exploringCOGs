@@ -41,5 +41,8 @@ vignettes/*.pdf
 # R Environment Variables
 .Renviron
 
+# Python
+*.ipynb_checkpoints
+
 # other
 *client_secrets*
